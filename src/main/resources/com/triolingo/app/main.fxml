@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="510.0" prefWidth="811.0" styleClass="root" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.MainController">
+    <top>
+        <HBox prefHeight="34.0" prefWidth="800.0" styleClass="hbox" BorderPane.alignment="CENTER" />
+    </top>
+    <left>
+        <VBox fx:id="sidebar" prefHeight="446.0" prefWidth="30.0">
+         <children>
+             <Button fx:id="homebtn" prefHeight="44.0" prefWidth="202.0" text="Home" />
+             <Button fx:id="showcarddecksbtn" onAction="#loadSelector" prefHeight="44.0" prefWidth="202.0" text="Show Card Decks" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+         <styleClass>
+            <String fx:value="sidebar" />
+            <String fx:value="vbox" />
+         </styleClass></VBox>
+    </left>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
+   <center>
+      <VBox fx:id="contentPane" alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+         <children>
+            <Pane prefHeight="461.0" prefWidth="579.0" style="-fx-background-color: -overlay0col;" />
+         </children></VBox>
+   </center>
+</BorderPane>
