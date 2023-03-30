@@ -51,6 +51,12 @@ dependencies {
         exclude(group: 'org.openjfx')
     }
     implementation('de.schlegel11:jfxanimation:2.0.0')
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.32'
+    implementation 'com.oracle.database.jdbc:ojdbc8:19.6.0.0'
+    implementation 'com.oracle.database.jdbc:ucp:19.6.0.0'
+
     api 'io.github.typhon0:AnimateFX:1.2.4'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

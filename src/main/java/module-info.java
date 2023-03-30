@@ -11,6 +11,8 @@ module com.triolingo.app {
 	//requires eu.hansolo.tilesfx;
 	requires com.almasb.fxgl.all;
 	//requires jfxanimation;
+	//requires ojdbc8;
+	requires java.sql;
 
 	opens com.triolingo.app to javafx.fxml;
 	exports com.triolingo.app;
