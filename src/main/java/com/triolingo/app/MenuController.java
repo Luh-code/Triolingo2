@@ -114,7 +114,7 @@ public class MenuController{
 					SQLDateTime datetime = new SQLDateTime((String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 3));
 					long timediff = datetime.getDifference(new SQLDateTime());
 					long DAY_IN_MILLISECONDS = 24 * 60 * 60 * 1000;
-					int timemod = 2;
+					int timemod = 3;
 					int beginning = 1;
 					if (timediff < DAY_IN_MILLISECONDS*Math.max(beginning, (lvl-1)*timemod))
 						btn.setStyle("-fx-text-fill: -yellowcol;");

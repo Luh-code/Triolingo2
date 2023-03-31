@@ -6,7 +6,6 @@ import com.triolingo.app.data.sql.SQLAccess;
 import com.triolingo.app.data.sql.SQLTableLayout;
 import com.triolingo.app.data.sql.attributes.SQLAttributeType;
 import com.triolingo.app.data.sql.query.SQLCustomQuery;
-import com.triolingo.app.data.sql.query.SQLSimpleQuery;
 import com.triolingo.app.utils.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,12 +50,12 @@ public class CardController {
 	public void resetCard()
 	{
 		if (ControllerManager.getInstance().isResourceRegistered(LearningProgressController.class)) {
-			double percentage = cardApp.getLearntPercentage();
+			double percentage = cardApp.getDonePercentage();
 			ControllerManager.getInstance().getResource("ProgressBar", LearningProgressController.class)
 				.setValue(percentage);
 		}
 		else Logger.logDebug("LearningProgressBar not registered");
-		if (cardApp.getLearntPercentage() >= 1.0)
+		if (cardApp.getDonePercentage() >= 1.0)
 		{
 			ControllerManager.getInstance().getResource("Main", MainController.class)
 				.loadFxml("allLearnt.fxml", true);

@@ -3,6 +3,7 @@ package com.triolingo.app.cards;
 import java.util.*;
 
 public class CardApp {
+	private Queue<Card> failedCards = new LinkedList<>();
 	private Queue<Card> learntCards = new LinkedList<>();
 	private Queue<Card> currentCards = new LinkedList<>();
 
@@ -42,7 +43,7 @@ public class CardApp {
 
 	public void wrong()
 	{
-		currentCards.add(currentCards.remove());
+		failedCards.add(currentCards.remove());
 	}
 
 	public void correct()
@@ -50,10 +51,12 @@ public class CardApp {
 		learntCards.add(currentCards.remove());
 	}
 
-	public double getLearntPercentage()
+	public double getDonePercentage()
 	{
 		//if (currentCards.size() == 0) return 1.0;
-		return learntCards.size()/((double)currentCards.size()+learntCards.size());
+		double a = (double)learntCards.size()+failedCards.size();
+		double b = a+currentCards.size();
+		return a/b;
 	}
 
 	public AnswerQuality judgeTypedAnswer(String answer)
@@ -61,5 +64,13 @@ public class CardApp {
 		if (answer.equals(getTranslation())) return AnswerQuality.CORRECT;
 		else if (answer.equalsIgnoreCase(getTranslation())) return  AnswerQuality.CASE_ERROR;
 		return AnswerQuality.WRONG;
+	}
+
+	public Queue<Card> getFailedCards() {
+		return failedCards;
+	}
+
+	public Queue<Card> getLearntCards() {
+		return learntCards;
 	}
 }
