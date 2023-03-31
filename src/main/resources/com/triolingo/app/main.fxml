@@ -13,8 +13,8 @@
         <VBox fx:id="sidebar" prefHeight="494.0" prefWidth="36.0">
          <children>
              <Button fx:id="homebtn" onAction="#loadHome" prefHeight="44.0" prefWidth="202.0" text="Home" />
-            <Button fx:id="learnbtn" mnemonicParsing="false" text="Learn" />
-             <Button fx:id="showcarddecksbtn" onAction="#loadSelector" prefHeight="44.0" prefWidth="202.0" text="Show Card Decks" />
+            <Button fx:id="learnbtn" mnemonicParsing="false" onAction="#loadTrainingWidget" text="Learn" />
+             <Button fx:id="showcarddecksbtn" onAction="#loadCardRegister" prefHeight="44.0" prefWidth="202.0" text="Show Card Decks" />
             <Button fx:id="createcardsbtn" mnemonicParsing="false" text="Create" />
          </children>
          <opaqueInsets>

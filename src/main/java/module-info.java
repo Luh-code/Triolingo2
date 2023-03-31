@@ -14,6 +14,8 @@ module com.triolingo.app {
 	//requires ojdbc8;
 	requires java.sql;
 
+	opens com.triolingo.app.cards to javafx.base;
+
 	opens com.triolingo.app to javafx.fxml;
 	exports com.triolingo.app;
 }

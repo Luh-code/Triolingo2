@@ -12,8 +12,8 @@
          </children></VBox>
       <VBox alignment="CENTER" layoutX="400.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="601.0" prefWidth="342.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
          <children>
-            <Button fx:id="searchpicbtn" mnemonicParsing="false" prefHeight="300.0" prefWidth="300.0" text="Search Cards" />
-            <Button fx:id="searchtextbtn" mnemonicParsing="false" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Search Cards" />
+            <Button fx:id="searchpicbtn" mnemonicParsing="false" onAction="#loadCardRegister" prefHeight="300.0" prefWidth="300.0" text="Search Cards" />
+            <Button fx:id="searchtextbtn" mnemonicParsing="false" onAction="#loadCardRegister" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Search Cards" />
          </children>
       </VBox>
       <VBox alignment="CENTER" layoutX="571.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="601.0" prefWidth="342.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">

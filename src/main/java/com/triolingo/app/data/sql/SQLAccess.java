@@ -62,6 +62,19 @@ public class SQLAccess {
 		return true;
 	}
 
+	public boolean delete(SQLDeletion deletion)
+	{
+		PreparedStatement ps = deletion.generateStatement(this);
+		try {
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			Logger.logError(String.format("Query statement failed! Template: %s", deletion.generateStatementTemplate()));
+			throw new RuntimeException(e); // return false;
+		}
+
+		return true;
+	}
+
 	public boolean query(SQLQuery query)
 	{
 		PreparedStatement ps = query.generateStatement(this);

@@ -85,7 +85,7 @@ public class CardController {
 		ControllerManager.getInstance().registerResourceType_s(CardController.class);
 		ControllerManager.getInstance().setResource("Card", this);
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
-		access.query(new SQLSimpleQuery(new String[] {"Word", "Translation"}, "triolingo.card", ""));
+		access.query(new SQLSimpleQuery(new String[] {"cardId", "Word", "Translation", "CardSetId"}, "triolingo.card", ""));
 		cardApp = new CardApp();
 		ArrayList<Card> cards = new ArrayList<>();
 		ResultSet resultSet = access.getResultSet();
@@ -93,8 +93,10 @@ public class CardController {
 			while (resultSet.next())
 			{
 				cards.add(new Card(
-					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 1),
-					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 2))
+					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 1),
+					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 2),
+					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 3),
+					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 4))
 				);
 			}
 		} catch (SQLException e) {

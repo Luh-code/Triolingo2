@@ -124,3 +124,45 @@
     -fx-text-fill: -redcol;
     -fx-fill: -redcol;
 }
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -surface1col;
+    -fx-background-insets: 0 0px 0 0;
+    -fx-padding: 0 0 0px 0;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: -surface1col;
+}
+
+.table-view .table-cell{
+    -fx-border-color: -surface0col;
+}
+
+.table-view {
+   -fx-background-color: -surface0col;
+}
+
+.table-row-cell {
+    -fx-border-color: -surface0col;
+}
+
+.table-row-cell:odd{
+    -fx-border-color: -surface0col;
+}
+
+.table-row-cell:even{
+    -fx-border-color: -surface0col;
+}
+
+.table-view .column-header{
+    -fx-background-color: -surface1col;
+}

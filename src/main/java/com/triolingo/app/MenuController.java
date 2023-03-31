@@ -23,10 +23,15 @@ public class MenuController{
 	private Button createpicbtn;
 
 	@FXML
+	private void loadCardRegister()
+	{
+		ControllerManager.getInstance().getResource("Main", MainController.class).loadFxml("cardRegister.fxml", true);
+	}
+
+	@FXML
 	private void loadLearn()
 	{
-		ControllerManager.getInstance().getResource("Main", MainController.class).loadFxml("learningProgress.fxml", true);
-		ControllerManager.getInstance().getResource("Main", MainController.class).loadFxml("card.fxml", false);
+		ControllerManager.getInstance().getResource("Main", MainController.class).loadTrainingWidget();
 	}
 
 	private void addIconToBtn(String url, Button btn, int size)

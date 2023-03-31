@@ -1,10 +1,7 @@
 package com.triolingo.app;
 
 //import de.schlegel11.jfxanimation.JFXAnimationTemplate;
-import com.triolingo.app.animation.AnimatonHelper;
 import javafx.animation.ScaleTransition;
-import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -69,19 +66,19 @@ public class MainController {
 	public void loadHome()
 	{
 		loadFxml("menu.fxml", true);
-		//initializeMenu();
 	}
 
 	@FXML
-	public void loadSelector()
+	public void loadCardRegister()
 	{
-		loadFxml("card.fxml", true);
+		loadFxml("cardRegister.fxml", true);
 	}
 
 	@FXML
 	public void loadTrainingWidget()
 	{
-		loadFxml("", true);
+		loadFxml("learningProgress.fxml", true);
+		loadFxml("card.fxml", false);
 	}
 
 	@FXML

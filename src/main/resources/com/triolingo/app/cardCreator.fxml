@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="179.0" prefWidth="600.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardCreatorController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: -surface0col;">
+        <items>
+          <Button mnemonicParsing="false" text="Button" />
+        </items>
+      </ToolBar>
+      <Label text="Label" />
+   </children>
+</VBox>
