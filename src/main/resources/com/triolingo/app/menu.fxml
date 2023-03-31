@@ -18,8 +18,8 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="571.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="601.0" prefWidth="342.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
          <children>
-            <Button fx:id="createpicbtn" mnemonicParsing="false" prefHeight="300.0" prefWidth="300.0" text="Create Cards" />
-            <Button fx:id="createtextbtn" mnemonicParsing="false" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Create Cards" />
+            <Button fx:id="createpicbtn" mnemonicParsing="false" onAction="#loadCardCreator" prefHeight="300.0" prefWidth="300.0" text="Create Cards" />
+            <Button fx:id="createtextbtn" mnemonicParsing="false" onAction="#loadCardCreator" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Create Cards" />
          </children>
       </VBox>
    </children>

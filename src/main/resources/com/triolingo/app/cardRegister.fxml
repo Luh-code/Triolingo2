@@ -10,7 +10,7 @@
         <items>
           <Button fx:id="showallbtn" mnemonicParsing="false" onAction="#showall" text="Show All" />
             <Button fx:id="deletebtn" mnemonicParsing="false" onAction="#deleteCard" text="Delete" />
-            <Button fx:id="editbtn" mnemonicParsing="false" text="Edit" />
+            <Button fx:id="editbtn" mnemonicParsing="false" onAction="#editCard" text="Edit" />
             <TextField fx:id="searchquery" />
             <Button fx:id="searchbtn" mnemonicParsing="false" onAction="#searchCards" text="Search" />
         </items>

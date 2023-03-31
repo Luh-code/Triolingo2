@@ -34,6 +34,12 @@ public class MenuController{
 		ControllerManager.getInstance().getResource("Main", MainController.class).loadTrainingWidget();
 	}
 
+	@FXML
+	private void loadCardCreator()
+	{
+		ControllerManager.getInstance().getResource("Main", MainController.class).loadCardCreator();
+	}
+
 	private void addIconToBtn(String url, Button btn, int size)
 	{
 		Image img = new Image(url);

@@ -15,7 +15,7 @@
              <Button fx:id="homebtn" onAction="#loadHome" prefHeight="44.0" prefWidth="202.0" text="Home" />
             <Button fx:id="learnbtn" mnemonicParsing="false" onAction="#loadTrainingWidget" text="Learn" />
              <Button fx:id="showcarddecksbtn" onAction="#loadCardRegister" prefHeight="44.0" prefWidth="202.0" text="Show Card Decks" />
-            <Button fx:id="createcardsbtn" mnemonicParsing="false" text="Create" />
+            <Button fx:id="createcardsbtn" mnemonicParsing="false" onAction="#loadCardCreator" text="Create" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -32,7 +32,7 @@
       <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
    </padding>
    <center>
-      <VBox fx:id="contentPane" alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="contentPane" alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
          <padding>
             <Insets left="10.0" />
          </padding></VBox>

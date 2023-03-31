@@ -5,11 +5,23 @@
 
 <VBox alignment="TOP_CENTER" prefHeight="179.0" prefWidth="600.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardCreatorController">
    <children>
+      <Label style="-fx-font-size: 32;" text="Create Card" />
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: -surface0col;">
+         <items>
+            <Label prefHeight="27.0" prefWidth="78.0" text="CardId" />
+            <Label prefHeight="27.0" prefWidth="174.0" text="Word" />
+            <Label prefHeight="27.0" prefWidth="175.0" text="Translation" />
+            <Label prefHeight="27.0" prefWidth="73.0" text="SetId" />
+         </items>
+      </ToolBar>
+      <ToolBar prefHeight="40.0" prefWidth="673.0" style="-fx-background-color: -surface0col;">
         <items>
-          <Button mnemonicParsing="false" text="Button" />
+            <Spinner fx:id="idspn" disable="true" prefHeight="39.0" prefWidth="74.0" />
+            <TextField fx:id="wordtxt" onAction="#updateDummy" prefHeight="39.0" prefWidth="174.0" />
+            <TextField fx:id="translationtxt" onAction="#updateDummy" prefHeight="39.0" prefWidth="176.0" />
+            <Spinner fx:id="setidspn" prefHeight="39.0" prefWidth="74.0" />
+          <Button fx:id="addbtn" mnemonicParsing="false" onAction="#addCard" text="Add" />
         </items>
       </ToolBar>
-      <Label text="Label" />
    </children>
 </VBox>

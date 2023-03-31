@@ -2,8 +2,10 @@ package com.triolingo.app;
 
 //import de.schlegel11.jfxanimation.JFXAnimationTemplate;
 import javafx.animation.ScaleTransition;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -82,6 +84,15 @@ public class MainController {
 	}
 
 	@FXML
+	public void loadCardCreator()
+	{
+		loadFxml("cardCreator.fxml", true);
+		loadFxml("dummyCard.fxml", false);
+		ControllerManager.getInstance().getResource("CardCreator", CardCreatorController.class)
+			.setUseDummy(true, "DummyCard");
+	}
+
+	@FXML
 	public void loadFxml(String name, boolean clear)
 	{
 		try {
@@ -93,6 +104,11 @@ public class MainController {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public ObservableList<Node> getContentPainChildren()
+	{
+		return contentPane.getChildren();
 	}
 
 	private void addIconToBtn(String url, Button btn, int size)

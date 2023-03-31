@@ -9,6 +9,7 @@ import com.triolingo.app.data.sql.query.SQLSimpleQuery;
 import com.triolingo.app.utils.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -73,6 +74,19 @@ public class CardRegisterController {
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
 		access.delete(new SQLDeletion("triolingo.card", String.format("card.cardId = %d", c.getId())));
 		cardtbl.getItems().remove(c);
+	}
+
+	@FXML
+	private void editCard()
+	{
+		MainController m = ControllerManager.getInstance().getResource("Main", MainController.class);
+		if (m.getContentPainChildren().size() > 1)
+		{
+			m.getContentPainChildren().remove(1);
+			return;
+		}
+		m.loadFxml("cardCreator.fxml", false);
+
 	}
 
 	@FXML
