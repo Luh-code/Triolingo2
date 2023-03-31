@@ -1,107 +1,65 @@
 package com.triolingo.app.cards;
 
-import com.triolingo.app.data.Box;
-import com.triolingo.app.data.Card;
-import com.triolingo.app.data.Drawer;
-
 import java.util.*;
 
-public class CardApp
-{
-	private Drawer drawer;
+public class CardApp {
+	private Queue<Card> learntCards = new LinkedList<>();
+	private Queue<Card> currentCards = new LinkedList<>();
 
-	private ArrayList<Card> cards = new ArrayList<>();
-	private ArrayList<Card> learnt = new ArrayList<>();
-
-	private int usedCards = 0;
-
-	public CardApp(Drawer drawer)
+	public void shuffle()
 	{
-		this.drawer = drawer;
+		ArrayList<Card> l = new ArrayList<>();
+		while (!currentCards.isEmpty()) {
+			l.add(currentCards.remove());
+		}
+		Queue<Card> temp = new LinkedList<>();
+		Random rnd = new Random();
+		while (!l.isEmpty())
+		{
+			temp.add(l.remove(rnd.nextInt(l.size())));
+		}
+		currentCards = temp;
 	}
 
-	public void init(int cardAmt, BitSet activeBoxes)
+	public void init(Card[] cards)
 	{
-		if(cardAmt > drawer.getCardAmt(activeBoxes)) throw new ArrayIndexOutOfBoundsException("Cannot pick more cards than available!");
-		ArrayList<Integer> boxIndices = new ArrayList<>();
-		for (int i = activeBoxes.nextSetBit(0); i != -1; i = activeBoxes.nextSetBit(i + 1))
-		{
-			boxIndices.add(i);
+		for (Card c :
+			cards) {
+			this.currentCards.add(c);
 		}
-		int boxAmt = boxIndices.size();
-		Random rnd = new Random();
-		for (int i = 0; i < cardAmt; i++)
-		{
-			int boxIndex = boxIndices.get(Math.abs(rnd.nextInt())%boxAmt);
-			Box b = drawer.getBox(boxIndex);
-			if (b.getCardAmt() <= 0)
-			{
-				i--;
-				continue;
-			}
-			Card c = b.getCard(Math.abs(rnd.nextInt())%b.getCardAmt());
-			c.setBox(b);
-			cards.add(c);
-			b.removeCard(c);
-		}
+		shuffle();
 	}
 
 	public String getWord()
 	{
-		return cards.get(0).getWord();
+		return currentCards.peek().getWord();
 	}
 
 	public String getTranslation()
 	{
-		return cards.get(0).getTranslation();
+		return currentCards.peek().getTranslation();
 	}
 
-	public void translationCorrect()
+	public void wrong()
 	{
-		learnt.add(cards.remove(0));
+		currentCards.add(currentCards.remove());
 	}
 
-	public void translationWrong()
+	public void correct()
 	{
-		cards.add(cards.remove(0));
+		learntCards.add(currentCards.remove());
 	}
 
-	/**
-	 * Judges if a string answer matches the translation
-	 * @param answer user translated word
-	 * @return AnswerQuality.CORRECT if there are no mistakes in the translation, AnswerQuality.CASE_ERROR if only the case is off, else AnswerQuality.WRONG is returned
-	 */
-	public AnswerQuality checkAnswer(String answer)
+	public double getLearntPercentage()
 	{
-		return (answer.equals(getTranslation()) ? AnswerQuality.CORRECT : (answer.equalsIgnoreCase(getTranslation()) ? AnswerQuality.CASE_ERROR : AnswerQuality.WRONG));
+		if (currentCards.size() == 0) return 1.0;
+		return learntCards.size()/(double)currentCards.size();
 	}
 
-	public void sortCardsInBoxes()
+	public AnswerQuality judgeTypedAnswer(String answer)
 	{
-		for (Card c : learnt)
-		{
-			c.getBox().moveCardUp(c);
-		}
-		for (Card c : cards)
-		{
-			c.getBox().moveCardDown(c);
-		}
-	}
-
-	public int cardsLeft()
-	{
-		return cards.size() + learnt.size() - usedCards;
-	}
-
-	public Card getCurrentCard()
-	{
-		return cards.get(0);
-	}
-
-	public Card useCard()
-	{
-		usedCards++;
-		return getCurrentCard();
+		if (answer.equals(getTranslation())) return AnswerQuality.CORRECT;
+		else if (answer.equalsIgnoreCase(getTranslation())) return  AnswerQuality.CASE_ERROR;
+		return AnswerQuality.WRONG;
 	}
 }
-

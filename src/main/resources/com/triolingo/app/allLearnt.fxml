@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="168.0" prefWidth="408.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.AllLearntController">
+   <children>
+      <Label style="-fx-font-size: 55;" text="All Learnt!" />
+      <Button fx:id="backbtn" mnemonicParsing="false" onAction="#backtomenu" style="-fx-font-size: 30; -fx-background-color: -surface0col;" text="Back" />
+   </children>
+</VBox>

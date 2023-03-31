@@ -28,10 +28,16 @@ public class MainController {
 	private Button showcarddecksbtn;
 
 	@FXML
+	private Button learnbtn;
+
+	@FXML
 	private VBox contentPane;
 
 	@FXML
 	private VBox sidebar;
+
+	@FXML
+	private Button createcardsbtn;
 
 	@FXML
 	public void expandSidebar()
@@ -60,6 +66,13 @@ public class MainController {
 	}
 
 	@FXML
+	public void loadHome()
+	{
+		loadFxml("menu.fxml", true);
+		//initializeMenu();
+	}
+
+	@FXML
 	public void loadSelector()
 	{
 		loadFxml("card.fxml", true);
@@ -85,11 +98,11 @@ public class MainController {
 		}
 	}
 
-	private void addIconToBtn(String url, Button btn)
+	private void addIconToBtn(String url, Button btn, int size)
 	{
 		Image img = new Image(url);
 		ImageView view = new ImageView(img);
-		view.setFitHeight(iconsize);
+		view.setFitHeight(size);
 		view.setPreserveRatio(true);
 		btn.setGraphic(view);
 		btn.setText("");
@@ -97,7 +110,12 @@ public class MainController {
 
 	public void initialize()
 	{
-		addIconToBtn("com/triolingo/app/icons/SearchCards@2x.png", showcarddecksbtn);
-		addIconToBtn("com/triolingo/app/icons/Home@2x.png", homebtn);
+		ControllerManager.getInstance().registerResourceType_s(MainController.class);
+		ControllerManager.getInstance().setResource("Main", this);
+		addIconToBtn("com/triolingo/app/icons/Home@2x.png", homebtn,25);
+		addIconToBtn("com/triolingo/app/icons/Card@2x.png", learnbtn, 25);
+		addIconToBtn("com/triolingo/app/icons/SearchCards@2x.png", showcarddecksbtn, 25);
+		addIconToBtn("com/triolingo/app/icons/CreateCards@2x.png", createcardsbtn, 25);
+		loadFxml("menu.fxml", true);
 	}
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" style="-fx-background-color: -basecol;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.LearningProgressController">
+   <children>
+      <ProgressBar fx:id="learnprogbar" prefHeight="18.0" prefWidth="514.0" progress="0.0" style="-fx-background-color: -surface0col; -fx-border-color: -surface0col; -fx-accent: -surface0col;" stylesheets="@main.css">
+         <VBox.margin>
+            <Insets bottom="30.0" />
+         </VBox.margin></ProgressBar>
+   </children>
+</VBox>

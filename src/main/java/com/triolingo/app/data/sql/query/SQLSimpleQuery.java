@@ -14,6 +14,7 @@ public class SQLSimpleQuery extends SQLQuery {
 	public SQLSimpleQuery(String[] attributes, String table, String appendix) {
 		this.attributes = attributes;
 		this.table = table;
+		this.appendix = appendix;
 	}
 
 	@Override
@@ -24,8 +25,8 @@ public class SQLSimpleQuery extends SQLQuery {
 			attributes) {
 			sb.append(String.format("%s,", a));
 		}
-		sb.insert(sb.length()-1, " ");
-		sb.append(String.format("FROM %s %s", table, appendix));
+		sb.replace(sb.length()-1, sb.length(), "");
+		sb.append(String.format(" FROM %s %s", table, appendix));
 		return sb.toString();
 	}
 

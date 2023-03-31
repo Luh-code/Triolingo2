@@ -1,13 +1,11 @@
-package com.triolingo.app.data;
+package com.triolingo.app;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.triolingo.app.utils.Logger.logError;
 
-//import static utils.Logger.*;
-
-public class ResourceManager {
+public class ControllerManager {
 	public interface IResourceArray {
 
 	}
@@ -64,6 +62,19 @@ public class ResourceManager {
 		resourceArrays.put(typeName, (IResourceArray) new ResourceArray<T>());
 	}
 
+	public <T> boolean isResourceRegistered(Class<? extends T> c)
+	{
+		String typeName = c.getSimpleName();
+
+		return resourceArrays.containsKey(typeName);
+	}
+
+	public <T> void registerResourceType_s(Class<? extends T> c)
+	{
+		if (!isResourceRegistered(c)) registerResourceType(c);
+	}
+
+
 	public <T> T getResource(String key, Class<? extends T> c) {
 		return getResourceArray(c).getResource(key);
 	}
@@ -78,5 +89,13 @@ public class ResourceManager {
 
 	public void deleteAll() {
 		resourceArrays.clear();
+	}
+
+	private ControllerManager() {}
+	private static ControllerManager instance;
+	public static ControllerManager getInstance()
+	{
+		if (instance == null) instance = new ControllerManager();
+		return instance;
 	}
 }

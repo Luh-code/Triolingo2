@@ -101,6 +101,11 @@
     -fx-border-insets: 0;
 }
 
+.splitpane
+{
+    -fx-background-color: -surface0col;
+}
+
 .card
 {
     -fx-background-color: -surface0col;
