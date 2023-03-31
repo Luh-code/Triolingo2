@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
 	public void start(Stage stage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 1600, 850);
-		stage.setTitle("Triolingo v0.3");
+		stage.setTitle("Triolingo v0.3alpha");
 		stage.setScene(scene);
 		stage.show();
 	}

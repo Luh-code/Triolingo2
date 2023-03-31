@@ -52,8 +52,8 @@ public class CardApp {
 
 	public double getLearntPercentage()
 	{
-		if (currentCards.size() == 0) return 1.0;
-		return learntCards.size()/(double)currentCards.size();
+		//if (currentCards.size() == 0) return 1.0;
+		return learntCards.size()/((double)currentCards.size()+learntCards.size());
 	}
 
 	public AnswerQuality judgeTypedAnswer(String answer)

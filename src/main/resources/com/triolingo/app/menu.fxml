@@ -7,8 +7,21 @@
    <children>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="601.0" prefWidth="342.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
          <children>
-            <Button fx:id="learnpicbtn" mnemonicParsing="false" onAction="#loadLearn" prefHeight="300.0" prefWidth="300.0" text="Learn Cards" />
-            <Button fx:id="learntextbtn" mnemonicParsing="false" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Learn Cards" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="learnpicbtn" layoutX="21.0" mnemonicParsing="false" onAction="#showBoxSelector" prefHeight="300.0" prefWidth="300.0" text="Learn Cards" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="21.0" />
+                  <VBox fx:id="boxselector" alignment="CENTER" layoutX="19.0" layoutY="-2.0" prefHeight="300.0" prefWidth="300.0" spacing="10.0" visible="false" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="-2.0">
+                     <children>
+                        <Button fx:id="box1btn" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Box 1" />
+                        <Button fx:id="box2btn" layoutX="126.0" layoutY="141.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Box 2" />
+                        <Button fx:id="box3btn" layoutX="126.0" layoutY="160.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Box 3" />
+                        <Button fx:id="box4btn" layoutX="126.0" layoutY="180.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Box 4" />
+                        <Button fx:id="box5btn" layoutX="126.0" layoutY="199.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Box 5" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Button fx:id="learntextbtn" mnemonicParsing="false" onAction="#showBoxSelector" style="-fx-background-color: -surface0col; -fx-font-size: 36;" text="Learn Cards" />
          </children></VBox>
       <VBox alignment="CENTER" layoutX="400.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="601.0" prefWidth="342.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
          <children>

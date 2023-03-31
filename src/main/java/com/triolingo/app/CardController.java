@@ -3,13 +3,16 @@ package com.triolingo.app;
 import com.triolingo.app.cards.Card;
 import com.triolingo.app.cards.CardApp;
 import com.triolingo.app.data.sql.SQLAccess;
+import com.triolingo.app.data.sql.SQLTableLayout;
 import com.triolingo.app.data.sql.attributes.SQLAttributeType;
+import com.triolingo.app.data.sql.query.SQLCustomQuery;
 import com.triolingo.app.data.sql.query.SQLSimpleQuery;
 import com.triolingo.app.utils.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import kotlin.Pair;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,12 +83,23 @@ public class CardController {
 		resetCard();
 	}
 
-	public void initialize()
+	public void init(int boxId)
 	{
-		ControllerManager.getInstance().registerResourceType_s(CardController.class);
-		ControllerManager.getInstance().setResource("Card", this);
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
-		access.query(new SQLSimpleQuery(new String[] {"cardId", "Word", "Translation", "CardSetId"}, "triolingo.card", ""));
+		SQLCustomQuery query = new SQLCustomQuery(
+			"SELECT c.CardId, c.Word, c.Translation, c.CardSetId\n" +
+				"FROM triolingo.card AS c\n" +
+				"LEFT JOIN triolingo.cardposition AS cp ON c.CardId = cp.CardId\n" +
+				String.format("WHERE cp.BoxId = %d", boxId)
+		);
+		access.query(query);
+		access.printResultSet(access.getResultSet(), new SQLTableLayout(new Pair[]{
+			new Pair(SQLAttributeType.INT, "CardId"),
+			new Pair(SQLAttributeType.STRING, "Word"),
+			new Pair(SQLAttributeType.STRING, "Translation"),
+			new Pair(SQLAttributeType.INT, "CardSetId")
+		}));
+		access.query(query);
 		cardApp = new CardApp();
 		ArrayList<Card> cards = new ArrayList<>();
 		ResultSet resultSet = access.getResultSet();
@@ -105,5 +119,11 @@ public class CardController {
 		}
 		cardApp.init(cards.stream().toArray(Card[]::new));
 		resetCard();
+	}
+
+	public void initialize()
+	{
+		ControllerManager.getInstance().registerResourceType_s(CardController.class);
+		ControllerManager.getInstance().setResource("Card", this);
 	}
 }

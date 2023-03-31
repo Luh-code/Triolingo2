@@ -14,13 +14,28 @@ public class SQLDateTime {
 		this.time = time;
 	}
 
+	public SQLDateTime(String datetime)
+	{
+		String[] strings = datetime.split(" ");
+		this.date = Date.valueOf(strings[0]);
+		this.time = Time.valueOf(strings[1]);
+	}
+
 	public SQLDateTime()
 	{
 		java.util.Date dt = new java.util.Date();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentTime = sdf.format(dt);
-		this.date = Date.valueOf(currentTime);
-		this.time = Time.valueOf(currentTime);
+		String[] strings = currentTime.split(" ");
+		this.date = Date.valueOf(strings[0]);
+		this.time = Time.valueOf(strings[1]);
+	}
+
+	public long getDifference(SQLDateTime to)
+	{
+		long datediff = Math.abs(getDate().getTime() - to.getDate().getTime());
+		long timediff = Math.abs(getTime().getTime() - to.getTime().getTime());
+		return datediff+timediff;
 	}
 
 	public Date getDate() {

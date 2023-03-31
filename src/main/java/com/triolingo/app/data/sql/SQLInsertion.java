@@ -23,11 +23,14 @@ public class SQLInsertion implements SQLOperation {
 	public String generateStatementTemplate()
 	{
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("insert into %s.%s values (default", this.schema, this.table));
+		sb.append(String.format("insert into %s.%s values (", this.schema, this.table));
 		for (SQLAttributeBase a :
 			attributes) {
-			sb.append(", ?");
+			String wildcard = "?";
+			if (a instanceof SQLDefaultAttribute) wildcard = "default";
+			sb.append(String.format("%s, ", wildcard));
 		}
+		sb.replace(sb.length()-2, sb.length(), "");
 		sb.append(")");
 		return sb.toString();
 	}
@@ -43,17 +46,17 @@ public class SQLInsertion implements SQLOperation {
 			throw new RuntimeException(e); // return null;
 		}
 
+		int ioffset = 0;
 		for (int i = 0; i < attributes.length; ++i) {
 			SQLAttributeBase a = attributes[i];
 			if (a instanceof SQLIntAttribute)
-				SQLAttributeType.INT.setPreparedStatement(ps, i+1, ((SQLIntAttribute) a).getData());
-				//ps.setInt(i+1, ((SQLIntAttribute) a).getData());
+				SQLAttributeType.INT.setPreparedStatement(ps, i+1-ioffset, ((SQLIntAttribute) a).getData());
 			else if (a instanceof SQLStringAttribute)
-				SQLAttributeType.STRING.setPreparedStatement(ps, i+1, ((SQLStringAttribute) a).getData());
-				//ps.setString(i+1, ((SQLStringAttribute) a).getData());
+				SQLAttributeType.STRING.setPreparedStatement(ps, i+1-ioffset, ((SQLStringAttribute) a).getData());
 			else if (a instanceof SQLDateTimeAttribute)
-				SQLAttributeType.DATETIME.setPreparedStatement(ps, i+1, ((SQLDateTimeAttribute) a).getData());
-				//ps.setString(i+1, ((SQLDateTimeAttribute) a).parseToString());
+				SQLAttributeType.DATETIME.setPreparedStatement(ps, i+1-ioffset, ((SQLDateTimeAttribute) a).getData());
+			else if (a instanceof SQLDefaultAttribute)
+				++ioffset;
 			else
 			{
 				Logger.logError("Attribute type not recognized!");

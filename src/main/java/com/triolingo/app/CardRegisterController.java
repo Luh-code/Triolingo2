@@ -72,7 +72,8 @@ public class CardRegisterController {
 	{
 		Card c = (Card) cardtbl.getSelectionModel().getSelectedItem();
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
-		access.delete(new SQLDeletion("triolingo.card", String.format("card.cardId = %d", c.getId())));
+		access.delete(new SQLDeletion("triolingo.card", String.format("card.CardId = %d", c.getId())));
+		access.delete(new SQLDeletion("triolingo.cardposition", String.format("cardposition.CardId = %d", c.getId())));
 		cardtbl.getItems().remove(c);
 	}
 
@@ -86,7 +87,6 @@ public class CardRegisterController {
 			return;
 		}
 		m.loadFxml("cardCreator.fxml", false);
-
 	}
 
 	@FXML
