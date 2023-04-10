@@ -5,6 +5,7 @@ import com.triolingo.app.data.sql.query.SQLQuery;
 import com.triolingo.app.utils.Logger;
 
 import java.sql.*;
+import java.util.function.Consumer;
 
 
 public class SQLAccess {
@@ -99,7 +100,7 @@ public class SQLAccess {
 		return true;
 	}
 
-	public void printResultSet(ResultSet resultSet, SQLTableLayout layout)
+	public void printResultSet(ResultSet resultSet, SQLTableLayout layout, Consumer<String> printer)
 	{
 		try {
 			while (resultSet.next())
@@ -107,7 +108,7 @@ public class SQLAccess {
 				for (int i = 0; i < layout.size(); ++i)
 				{
 					SQLAttributeType type = layout.getTypeAt(i);
-					Logger.logInfo(String.format("%s: %s", layout.getAliasAt(i), type.toString(type.getObjFromResultSet(resultSet, i + 1))));
+					printer.accept(String.format("%s: %s", layout.getAliasAt(i), type.toString(type.getObjFromResultSet(resultSet, i + 1))));
 				}
 			}
 		} catch (SQLException e) {

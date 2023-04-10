@@ -41,6 +41,11 @@ public class CardApp {
 		return currentCards.peek().getTranslation();
 	}
 
+	public String getImage()
+	{
+		return currentCards.peek().getImage();
+	}
+
 	public void wrong()
 	{
 		failedCards.add(currentCards.remove());

@@ -5,6 +5,7 @@ import com.triolingo.app.data.sql.attributes.SQLAttributeType;
 import com.triolingo.app.data.sql.attributes.SQLIntAttribute;
 import com.triolingo.app.data.sql.attributes.SQLStringAttribute;
 import com.triolingo.app.data.sql.query.SQLSimpleQuery;
+import com.triolingo.app.utils.Logger;
 import kotlin.Pair;
 
 public class SQLTest {
@@ -24,6 +25,6 @@ public class SQLTest {
 			new Pair(SQLAttributeType.STRING, "Word"),
 			new Pair(SQLAttributeType.STRING, "Translation"),
 			//new Pair(SQLAttributeType.INT, "CardSetId"),
-		}));
+		}), Logger::logInfo);
 	}
 }

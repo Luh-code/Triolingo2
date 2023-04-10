@@ -1,7 +1,6 @@
 package com.triolingo.app;
 
 import com.triolingo.app.cards.Card;
-import com.triolingo.app.cards.CardApp;
 import com.triolingo.app.data.sql.SQLAccess;
 import com.triolingo.app.data.sql.SQLDeletion;
 import com.triolingo.app.data.sql.attributes.SQLAttributeType;
@@ -9,7 +8,6 @@ import com.triolingo.app.data.sql.query.SQLSimpleQuery;
 import com.triolingo.app.utils.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,7 +45,7 @@ public class CardRegisterController {
 	private void showall()
 	{
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
-		access.query(new SQLSimpleQuery(new String[] {"cardId", "Word", "Translation", "CardSetId"}, "triolingo.card", ""));
+		access.query(new SQLSimpleQuery(new String[] {"cardId", "Word", "Translation", "Image", "CardSetId"}, "triolingo.card", ""));
 		ArrayList<Card> cards = new ArrayList<>();
 		ResultSet resultSet = access.getResultSet();
 		try {
@@ -57,7 +55,8 @@ public class CardRegisterController {
 					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 1),
 					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 2),
 					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 3),
-					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 4))
+					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 4),
+					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 5))
 				);
 			}
 		} catch (SQLException e) {
@@ -81,9 +80,9 @@ public class CardRegisterController {
 	private void editCard()
 	{
 		MainController m = ControllerManager.getInstance().getResource("Main", MainController.class);
-		if (m.getContentPainChildren().size() > 1)
+		if (m.getContentPaneChildren().size() > 1)
 		{
-			m.getContentPainChildren().remove(1);
+			m.getContentPaneChildren().remove(1);
 			return;
 		}
 		m.loadFxml("cardCreator.fxml", false);
@@ -95,7 +94,7 @@ public class CardRegisterController {
 		SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
 		access.query(new SQLSimpleQuery(
 			new String[] {
-				"cardId", "Word", "Translation", "CardSetId"},
+				"cardId", "Word", "Translation", "Image", "CardSetId"},
 			"triolingo.card",
 			String.format("WHERE card.Word LIKE '%s%s%s'", "%", searchquery.getText(), "%")
 		));
@@ -108,7 +107,8 @@ public class CardRegisterController {
 					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 1),
 					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 2),
 					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 3),
-					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 4))
+					(String) SQLAttributeType.STRING.getObjFromResultSet(resultSet, 4),
+					(int) SQLAttributeType.INT.getObjFromResultSet(resultSet, 5))
 				);
 			}
 		} catch (SQLException e) {

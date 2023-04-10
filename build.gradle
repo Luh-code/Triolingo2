@@ -25,8 +25,7 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.triolingo.app'
-    mainClass = 'com.triolingo.app.HelloApplication'
+    mainClass = 'com.triolingo.app.Application'
 }
 
 javafx {
@@ -56,6 +55,13 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.32'
     implementation 'com.oracle.database.jdbc:ojdbc8:19.6.0.0'
     implementation 'com.oracle.database.jdbc:ucp:19.6.0.0'
+
+//    implementation platform('com.google.cloud:libraries-bom:26.1.4')
+//
+//    implementation 'com.google.cloud:google-cloud-texttospeech'
+
+    // https://mvnrepository.com/artifact/net.sf.sociaal/freetts
+    implementation 'net.sf.sociaal:freetts:1.2.2'
 
     api 'io.github.typhon0:AnimateFX:1.2.4'
 

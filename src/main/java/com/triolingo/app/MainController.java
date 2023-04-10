@@ -106,12 +106,12 @@ public class MainController {
 		}
 	}
 
-	public ObservableList<Node> getContentPainChildren()
+	public ObservableList<Node> getContentPaneChildren()
 	{
 		return contentPane.getChildren();
 	}
 
-	private void addIconToBtn(String url, Button btn, int size)
+	public void addIconToBtn(String url, Button btn, int size)
 	{
 		Image img = new Image(url);
 		ImageView view = new ImageView(img);
