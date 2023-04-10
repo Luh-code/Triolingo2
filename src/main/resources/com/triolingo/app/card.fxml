@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" styleClass="card" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardController">
+<HBox fx:id="backhbx" alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" styleClass="card" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
@@ -15,21 +15,26 @@
                </VBox.margin>
                <children>
                   <Label fx:id="titlelbl" alignment="CENTER" layoutX="104.0" prefHeight="47.0" prefWidth="385.0" style="-fx-font-size: 32;" text="TITLE" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="104.0" />
-                  <Button fx:id="audiobtn" layoutX="8.0" layoutY="4.0" mnemonicParsing="false" onAction="#tts" text="Audio" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="494.0" />
+                  <Button fx:id="wordaudiobtn" layoutX="8.0" layoutY="4.0" mnemonicParsing="false" onAction="#wordtts" text="Audio" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="494.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <Label fx:id="translationlbl" style="-fx-font-size: 28; -fx-text-fill: -subtext0col;" text="TRANSLATION" visible="false">
+            <AnchorPane fx:id="translationpane" visible="false">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
-            </Label>
-            <HBox fx:id="successbuttonsbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="57.0" prefWidth="580.0" visible="false">
+               <children>
+                  <Label fx:id="translationlbl" alignment="CENTER" style="-fx-font-size: 28; -fx-text-fill: -subtext0col;" text="TRANSLATION" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+                  <Button fx:id="translationaudiobtn" mnemonicParsing="false" onAction="#translationtts" text="Audio" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="494.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <HBox fx:id="successbuttonsbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="57.0" prefWidth="252.0" visible="false">
                <children>
                   <Button fx:id="correctbtn" mnemonicParsing="false" onAction="#correct" style="-fx-font-size: 24; -fx-text-fill: -greencol; -fx-fill: -greencol;" styleClass="cardbuttoncorrect" text="Correct" />
                   <Button fx:id="wrongbtn" mnemonicParsing="false" onAction="#wrong" style="-fx-font-size: 24; -fx-text-fill: -redcol; -fx-fill: -redcol;" styleClass="cardbuttonwrong" text="Wrong">
                      <HBox.margin>
                         <Insets />
-                     </HBox.margin></Button>
+                     </HBox.margin>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="50.0" />

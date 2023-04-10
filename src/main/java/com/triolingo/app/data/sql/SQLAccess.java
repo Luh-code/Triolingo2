@@ -89,6 +89,19 @@ public class SQLAccess {
 		return true;
 	}
 
+	public boolean update(SQLUpdate update)
+	{
+		PreparedStatement ps = update.generateStatement(this);
+		try {
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			Logger.logError(String.format("Update statement failed! Template: %s", update.generateStatementTemplate()));
+			throw new RuntimeException(e); // return false;
+		}
+
+		return true;
+	}
+
 	public boolean acuteQuery(String prompt)
 	{
 		try {
