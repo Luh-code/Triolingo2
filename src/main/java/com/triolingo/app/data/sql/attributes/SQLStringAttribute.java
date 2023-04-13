@@ -13,6 +13,7 @@ public class SQLStringAttribute extends SQLAttribute<String> {
 
 	@Override
 	public void setData(String data) {
+		if (data == null) data = "";
 		if (data.length() > this.MAX_LENGTH)
 			throw new IllegalArgumentException(String.format("Maximum String size is cannot be over %d", this.MAX_LENGTH));
 		super.setData(data);

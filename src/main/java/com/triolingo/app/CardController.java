@@ -6,12 +6,14 @@ import com.triolingo.app.data.sql.SQLAccess;
 import com.triolingo.app.data.sql.SQLTableLayout;
 import com.triolingo.app.data.sql.SQLUpdate;
 import com.triolingo.app.data.sql.attributes.SQLAttributeType;
+import com.triolingo.app.data.sql.attributes.data.SQLDateTime;
 import com.triolingo.app.data.sql.query.SQLCustomQuery;
 import com.triolingo.app.utils.Logger;
 import com.triolingo.app.utils.SpeechSynth;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -86,7 +88,7 @@ public class CardController {
 		{
 //			speechSynth.end();
 			SQLAccess access = ControllerManager.getInstance().getResource("SQLAccess", SQLAccess.class);
-			SQLUpdate[] updates = new SQLUpdate[cardApp.getLearntCards().size()+cardApp.getFailedCards().size()];
+			SQLUpdate[] updates = new SQLUpdate[cardApp.getLearntCards().size()+cardApp.getFailedCards().size()+1];
 			BiFunction<Integer, Integer, SQLUpdate> createUpdate = (t, u) -> {
 				SQLUpdate update = new SQLUpdate("triolingo", "cardposition", new Pair[] {
 					new Pair("BoxId", u.toString())
@@ -97,15 +99,17 @@ public class CardController {
 			{
 				updates[i] = createUpdate.apply(cardApp.getLearntCards().remove().getId(), (boxId < 5 ? boxId+1 : boxId));
 			}
-			for(int i = updates.length-cardApp.getFailedCards().size(); i < updates.length; i++)
+			for(int i = updates.length-1-cardApp.getFailedCards().size(); i < updates.length-1; i++)
 			{
-				updates[i] = createUpdate.apply(cardApp.getFailedCards().remove().getId(), (boxId > 1 ? boxId-1 : boxId));
+				updates[i] = createUpdate.apply(cardApp.getFailedCards().remove().getId(), 1);
 			}
+			updates[updates.length-1] = new SQLUpdate("triolingo", "box", new Pair[]{
+				new Pair("LastUsed", String.format("'%s'", new SQLDateTime().getDateTime()))
+			}, String.format("WHERE BoxId = %d", boxId));
 			for (SQLUpdate update :
 				updates) {
 				access.update(update);
 			}
-
 			ControllerManager.getInstance().getResource("Main", MainController.class)
 				.loadFxml("allLearnt.fxml", true);
 			return;
@@ -146,8 +150,15 @@ public class CardController {
 
 	private void setImage(String name)
 	{
-		Image img = new Image(String.format("com/triolingo/app/images/%s.png", name));
+		if (name == null) name = "null.png";
+		Image img = new Image(String.format("com/triolingo/app/images/%s", name));
 		imageimg.setImage(img);
+//		Rectangle clip = new Rectangle();
+//		clip.setWidth(imageimg.getFitWidth());
+//		clip.setHeight(imageimg.getFitHeight());
+//		clip.setArcHeight(10);
+//		clip.setArcWidth(10);
+//		imageimg.setClip(clip);
 	}
 
 	public void init(int boxId)
@@ -185,24 +196,7 @@ public class CardController {
 		MainController mc = ControllerManager.getInstance().getResource("Main", MainController.class);
 		mc.addIconToBtn("com/triolingo/app/icons/Audio@2x.png", wordaudiobtn, 25);
 		mc.addIconToBtn("com/triolingo/app/icons/Audio@2x.png", translationaudiobtn, 25);
-//		Rectangle clip = new Rectangle();
-//		imageimg.fitWidthProperty().addListener(new ChangeListener<Number>() {
-//			@Override
-//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//				clip.widthProperty().set((Double) newValue);
-//			}
-//		});
-//		clip.setWidth(imageimg.getFitWidth());
-//		imageimg.fitHeightProperty().addListener(new ChangeListener<Number>() {
-//			@Override
-//			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-//				clip.heightProperty().set((Double) newValue);
-//			}
-//		});
-//		clip.setHeight(imageimg.getFitHeight());
-//		clip.setArcHeight(10);
-//		clip.setArcWidth(10);
-//		imageimg.setClip(clip);
+
 		//speechSynth.resume();
 		resetCard();
 	}

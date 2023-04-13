@@ -4,25 +4,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardRegisterController">
+<VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="805.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.triolingo.app.CardRegisterController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: -surface0col;">
         <items>
           <Button fx:id="showallbtn" mnemonicParsing="false" onAction="#showall" text="Show All" />
             <Button fx:id="deletebtn" mnemonicParsing="false" onAction="#deleteCard" text="Delete" />
             <Button fx:id="editbtn" mnemonicParsing="false" onAction="#editCard" text="Edit" />
-            <TextField fx:id="searchquery" />
-            <Button fx:id="searchbtn" mnemonicParsing="false" onAction="#searchCards" text="Search" />
+            <TextField fx:id="searchquery" prefHeight="39.0" prefWidth="256.0" />
+            <Button fx:id="searchbtn" mnemonicParsing="false" onAction="#searchCards" text="Filter" />
         </items>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </ToolBar>
       <ScrollPane prefHeight="355.0" prefWidth="600.0">
          <content>
-            <TableView fx:id="cardtbl" editable="true" maxWidth="1.7976931348623157E308" prefHeight="331.0" prefWidth="557.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
+            <TableView fx:id="cardtbl" editable="true" maxWidth="1.7976931348623157E308" prefHeight="331.0" prefWidth="783.0" style="-fx-background-color: -surface0col;" stylesheets="@main.css">
                <columns>
                   <TableColumn prefWidth="75.0" text="id" />
                   <TableColumn prefWidth="196.0" text="Word" />
                   <TableColumn prefWidth="209.0" text="Translation" />
-                  <TableColumn prefWidth="76.0" text="CardSet" />
+                  <TableColumn prefWidth="186.0" text="Image Name" />
+                  <TableColumn prefWidth="88.0" text="CardSet" />
                </columns></TableView>
          </content>
       </ScrollPane>

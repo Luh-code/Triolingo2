@@ -86,6 +86,9 @@ public class CardRegisterController {
 			return;
 		}
 		m.loadFxml("cardCreator.fxml", false);
+		CardCreatorController ccc = ControllerManager.getInstance().getResource("CardCreator", CardCreatorController.class);
+		Card c = (Card) cardtbl.getSelectionModel().getSelectedItem();
+		ccc.setValues(c.getId(), c.getWord(), c.getTranslation(), c.getImage(), c.getCardSet());
 	}
 
 	@FXML
@@ -123,9 +126,10 @@ public class CardRegisterController {
 	{
 		ObservableList columns = cardtbl.getColumns();
 
-		((TableColumn)columns.get(0)).setCellValueFactory(new PropertyValueFactory<>("id"));
-		((TableColumn)columns.get(1)).setCellValueFactory(new PropertyValueFactory<>("word"));
-		((TableColumn)columns.get(2)).setCellValueFactory(new PropertyValueFactory<>("translation"));
-		((TableColumn)columns.get(3)).setCellValueFactory(new PropertyValueFactory<>("cardSet"));
+		((TableColumn)columns.get(0)).setCellValueFactory(new PropertyValueFactory<>("Id"));
+		((TableColumn)columns.get(1)).setCellValueFactory(new PropertyValueFactory<>("Word"));
+		((TableColumn)columns.get(2)).setCellValueFactory(new PropertyValueFactory<>("Translation"));
+		((TableColumn)columns.get(3)).setCellValueFactory(new PropertyValueFactory<>("Image"));
+		((TableColumn)columns.get(4)).setCellValueFactory(new PropertyValueFactory<>("CardSet"));
 	}
 }

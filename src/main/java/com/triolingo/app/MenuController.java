@@ -72,7 +72,7 @@ public class MenuController{
 	}
 
 	@FXML
-	private void showBoxSelector()
+	public void showBoxSelector()
 	{
 		if (boxselector.isVisible())
 		{

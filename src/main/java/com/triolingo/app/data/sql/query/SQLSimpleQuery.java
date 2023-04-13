@@ -39,7 +39,6 @@ public class SQLSimpleQuery extends SQLQuery {
 			Logger.logError("PreparedStatement could not be generated!");
 			throw new RuntimeException(e); // return null;
 		}
-
 		return ps;
 	}
 }

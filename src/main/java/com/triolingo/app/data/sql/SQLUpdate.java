@@ -25,8 +25,9 @@ public class SQLUpdate implements SQLOperation {
 		sb.append(String.format("UPDATE %s.%s SET", schema, table));
 		for (Pair<String, String> u :
 			updates) {
-			sb.append(String.format(" %s=%s", u.getKey(), u.getValue()));
+			sb.append(String.format(" %s=%s,", u.getKey(), u.getValue()));
 		}
+		if (updates.length > 0) sb.replace(sb.length()-1, sb.length(), "");
 		sb.append(String.format(" %s", appendix));
 		return sb.toString();
 	}

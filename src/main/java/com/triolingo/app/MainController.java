@@ -77,6 +77,12 @@ public class MainController {
 	}
 
 	@FXML
+	private void train()
+	{
+		loadFxml("menu.fxml", true);
+		ControllerManager.getInstance().getResource("Menu", MenuController.class).showBoxSelector();
+	}
+	@FXML
 	public void loadTrainingWidget()
 	{
 		loadFxml("learningProgress.fxml", true);
